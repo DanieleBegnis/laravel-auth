@@ -5,6 +5,9 @@
     <h2 class="fs-4 text-secondary my-4">
         {{ __('Dashboard') }}
     </h2>
+    <h4 class="fs-4 text-secondary my-4">
+        Ciao {{ $user->name }}!
+    </h4>
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
