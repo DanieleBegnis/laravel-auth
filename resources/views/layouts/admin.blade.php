@@ -55,7 +55,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ true == 'admin.dashboard' ? 'bg-secondary' : '' }}" href="{{ route('admin.projects.index') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Projects
+                                    <i class="fa-solid fa-list-ul fa-lg fa-fw"></i> Projects
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ true == 'admin.dashboard' ? 'bg-secondary' : '' }}" href="{{ route('admin.projects.create') }}">
+                                    <i class="fa-solid fa-plus fa-lg fa-fw"></i> Create New
                                 </a>
                             </li>
                         </ul>
