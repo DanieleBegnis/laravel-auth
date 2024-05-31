@@ -7,5 +7,16 @@
     <p>Creato il: {{ $project->created_at }}</p>
     <p>Aggiornato il: {{ $project->updated_at }}</p>
     <h4>Modifica il post</h4>
-    <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit</a>
+    <div class="row">
+        <div class="col-6">
+            <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit</a>
+        </div>
+        <div class="col-6">
+            <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" type="submit">Elimina il Progetto</button>
+            </form>
+        </div>
+    </div>
 @endsection
