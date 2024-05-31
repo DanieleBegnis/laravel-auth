@@ -47,6 +47,23 @@ class ProjectController extends Controller
         $newProject->slug = Str::slug($newProject->name, '-');
         $newProject->save();
 
+        $request->validate(
+            [
+                'name' => 'required|max:250|min:10',
+                'client_name' => 'required',
+                'summary' => 'required|max:5000|min:10'
+            ],
+            [
+                'name.required' => 'Inserisci un titolo per il tuo progetto',
+                'name.max' => 'Il titolo può essere al massimo di 250 caratteri',
+                'name.min' => 'Il titolo può essere al minimo di 10 caratteri',
+                'summary.required' => 'Inserisci una descrizione per il tuo fumetto',
+                'summary.max' => 'la descrizione può essere al massimo di 5000 caratteri',
+                'summary.min' => 'la descrizione può essere al minimo di 10 caratteri',
+                'client_name.required' => 'Inserisci il nome del tuo cliente'
+            ]
+        );
+
         return redirect()->route('admin.projects.show', ['project' => $newProject->id]);
     }
 
