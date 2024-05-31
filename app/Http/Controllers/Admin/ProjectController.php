@@ -61,6 +61,7 @@ class ProjectController extends Controller
                 'summary.max' => 'la descrizione può essere al massimo di 5000 caratteri',
                 'summary.min' => 'la descrizione può essere al minimo di 10 caratteri',
                 'client_name.required' => 'Inserisci il nome del tuo cliente'
+                //test push
             ]
         );
 
