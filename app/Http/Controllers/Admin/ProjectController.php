@@ -38,14 +38,6 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $formdata = $request->all();
-
-        $newProject = new Project();
-        $newProject->name = $formdata['name'];
-        $newProject->client_name = $formdata['client_name'];
-        $newProject->summary = $formdata['summary'];
-        $newProject->slug = Str::slug($newProject->name, '-');
-        $newProject->save();
 
         $request->validate(
             [
@@ -61,9 +53,18 @@ class ProjectController extends Controller
                 'summary.max' => 'la descrizione può essere al massimo di 5000 caratteri',
                 'summary.min' => 'la descrizione può essere al minimo di 10 caratteri',
                 'client_name.required' => 'Inserisci il nome del tuo cliente'
-                //test push
             ]
         );
+
+        $formdata = $request->all();
+
+        $newProject = new Project();
+        $newProject->name = $formdata['name'];
+        $newProject->client_name = $formdata['client_name'];
+        $newProject->summary = $formdata['summary'];
+        $newProject->slug = Str::slug($newProject->name, '-');
+        $newProject->save();
+
 
         return redirect()->route('admin.projects.show', ['project' => $newProject->id]);
     }
@@ -100,7 +101,7 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         $formdata = $request->all();
-        
+
         $project = Project::findOrFail($id);
         $project->name = $formdata['name'];
         $project->client_name = $formdata['client_name'];
@@ -122,5 +123,5 @@ class ProjectController extends Controller
         $project->delete();
 
         return redirect()->route('admin.projects.index');
-    }   
+    }
 }
