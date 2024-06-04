@@ -61,7 +61,6 @@ class ProjectController extends Controller
 
         if($request->hasFile('project_thumbnail')) {
             $img_path= Storage::disk('public')->put('projects_thumbs', $formdata['project_thumbnail']);
-            //dd($img_path);
         }
 
         $newProject = new Project();
@@ -109,11 +108,17 @@ class ProjectController extends Controller
     {
         $formdata = $request->all();
 
+        if($request->hasFile('project_thumbnail')) {
+            $img_path= Storage::disk('public')->put('projects_thumbs', $formdata['project_thumbnail']);
+            $formdata['project_thumbnail'] = $img_path;
+        }
+
         $project = Project::findOrFail($id);
         $project->name = $formdata['name'];
         $project->client_name = $formdata['client_name'];
         $project->summary = $formdata['summary'];
         $project->slug = Str::slug($project->name, '-');
+        $project->project_thumbnail = $img_path;
         $project->save();
 
         return redirect()->route('admin.projects.show', ['project' => $project->id]);
