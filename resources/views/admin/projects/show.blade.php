@@ -2,6 +2,9 @@
 
 @section('content')
     <h3>{{ $project->name }}</h3>
+    @if ($project->project_thumbnail)
+        <img src="{{asset('storage/' . $project->project_thumbnail)}}" alt="">
+    @endif
     <p>{{ $project->summary }}</p>
     <p>Progetto per: {{ $project->client_name }}</p>
     <p>Creato il: {{ $project->created_at }}</p>

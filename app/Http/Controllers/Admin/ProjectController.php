@@ -61,7 +61,7 @@ class ProjectController extends Controller
 
         if($request->hasFile('project_thumbnail')) {
             $img_path= Storage::disk('public')->put('projects_thumbs', $formdata['project_thumbnail']);
-            dd($img_path);
+            //dd($img_path);
         }
 
         $newProject = new Project();
@@ -69,6 +69,7 @@ class ProjectController extends Controller
         $newProject->client_name = $formdata['client_name'];
         $newProject->summary = $formdata['summary'];
         $newProject->slug = Str::slug($newProject->name, '-');
+        $newProject->project_thumbnail = $img_path;
         $newProject->save();
 
 
