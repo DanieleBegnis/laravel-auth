@@ -35,6 +35,9 @@
             <label for="project_thumbnail" class="form-label">Inserisci il Thumbnail del progetto</label>
             <input class="form-control" type="file" id="project_thumbnail" name="project_thumbnail">
         </div>
+        @error('project_thumbnail')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
         <button type="submit" class="btn btn-primary my-3">Salva</button>
     </form>
